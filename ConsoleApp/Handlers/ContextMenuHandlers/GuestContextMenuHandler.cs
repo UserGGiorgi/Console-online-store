@@ -1,4 +1,4 @@
-﻿namespace ConsoleApp.Handlers.ContextMenu;
+﻿namespace ConsoleApp.Handlers.ContextMenuHandlers;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -39,6 +39,7 @@ public class StoreDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        ArgumentNullException.ThrowIfNull(modelBuilder);
         modelBuilder.Entity<Category>().HasData(this.factory.GetCategoryData());
         modelBuilder.Entity<Manufacturer>().HasData(this.factory.GetManufacturerData());
         modelBuilder.Entity<OrderState>().HasData(this.factory.GetOrderStateData());

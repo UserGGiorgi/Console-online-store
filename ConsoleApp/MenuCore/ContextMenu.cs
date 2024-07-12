@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ConsoleApp.Controllers;
-using ConsoleApp.Handlers.ContextMenu;
+using ConsoleApp.Handlers.ContextMenuHandlers;
 using ConsoleApp1;
 using StoreBLL.Interfaces;
 using StoreBLL.Models;
@@ -13,11 +13,12 @@ namespace ConsoleMenu
 {
     public class ContextMenu : Menu
     {
-        private Func<IEnumerable<AbstractModel>> getAll;
+        private readonly Func<IEnumerable<AbstractModel>> getAll;
 
         public ContextMenu(AdminContextMenuHandler controller, Func<IEnumerable<AbstractModel>> getAll)
-            : base(controller.GenerateMenuItems())
+            : base(controller?.GenerateMenuItems() !)
         {
+            ArgumentNullException.ThrowIfNull(controller);
             this.getAll = getAll;
         }
 

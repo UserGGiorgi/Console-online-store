@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using StoreDAL.Data;
 using StoreDAL.Entities;
 using StoreDAL.Interfaces;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 public class UserRoleRepository : AbstractRepository, IUserRoleRepository
 {
@@ -16,6 +17,7 @@ public class UserRoleRepository : AbstractRepository, IUserRoleRepository
     public UserRoleRepository(StoreDbContext context)
         : base(context)
     {
+        ArgumentNullException.ThrowIfNull(context);
         this.dbSet = context.Set<UserRole>();
     }
 

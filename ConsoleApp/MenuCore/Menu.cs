@@ -21,6 +21,7 @@ namespace ConsoleMenu
 
         public Menu((ConsoleKey id, string caption, Action action)[] array)
         {
+            ArgumentNullException.ThrowIfNull(array);
             this.items = new Dictionary<ConsoleKey, MenuItem>();
             foreach (var elem in array)
             {

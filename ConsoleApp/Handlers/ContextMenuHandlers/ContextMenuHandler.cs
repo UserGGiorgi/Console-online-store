@@ -1,4 +1,4 @@
-﻿namespace ConsoleApp.Handlers.ContextMenu;
+﻿namespace ConsoleApp.Handlers.ContextMenuHandlers;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -22,7 +22,7 @@ public abstract class ContextMenuHandler
     public void GetItemDetails()
     {
         Console.WriteLine("Input record ID for more details");
-        int id = int.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+        int id = int.Parse(Console.ReadLine() !, CultureInfo.InvariantCulture);
         Console.WriteLine(this.service.GetById(id));
     }
 
