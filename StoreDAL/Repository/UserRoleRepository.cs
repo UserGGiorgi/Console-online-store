@@ -29,7 +29,9 @@ public class UserRoleRepository : AbstractRepository, IUserRoleRepository
 
     public void Delete(UserRole entity)
     {
-        throw new NotImplementedException();
+        ArgumentNullException.ThrowIfNull(entity);
+        this.dbSet.Remove(entity);
+        this.context.SaveChanges();
     }
 
     public void DeleteById(int id)
@@ -49,7 +51,10 @@ public class UserRoleRepository : AbstractRepository, IUserRoleRepository
 
     public IEnumerable<UserRole> GetAll(int pageNumber, int rowCount)
     {
-        throw new NotImplementedException();
+        return this.dbSet
+                       .Skip((pageNumber - 1) * rowCount)
+                       .Take(rowCount)
+                       .ToList();
     }
 
     public UserRole GetById(int id)
@@ -59,6 +64,11 @@ public class UserRoleRepository : AbstractRepository, IUserRoleRepository
 
     public void Update(UserRole entity)
     {
-        throw new NotImplementedException();
+        ArgumentNullException.ThrowIfNull(entity);
+        var existingUser = this.GetById(entity.Id);
+        if (existingUser != null)
+        {
+            this.dbSet.Update(existingUser);
+        }
     }
 }

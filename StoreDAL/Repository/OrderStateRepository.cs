@@ -28,7 +28,9 @@ public class OrderStateRepository : AbstractRepository, IOrderStateRepository
 
     public void Delete(OrderState entity)
     {
-        throw new NotImplementedException();
+        ArgumentNullException.ThrowIfNull(entity);
+        this.dbSet.Remove(entity);
+        this.context.SaveChanges();
     }
 
     public void DeleteById(int id)
@@ -48,7 +50,10 @@ public class OrderStateRepository : AbstractRepository, IOrderStateRepository
 
     public IEnumerable<OrderState> GetAll(int pageNumber, int rowCount)
     {
-        throw new NotImplementedException();
+        return this.dbSet
+                       .Skip((pageNumber - 1) * rowCount)
+                       .Take(rowCount)
+                       .ToList();
     }
 
     public OrderState GetById(int id)
@@ -58,6 +63,11 @@ public class OrderStateRepository : AbstractRepository, IOrderStateRepository
 
     public void Update(OrderState entity)
     {
-        throw new NotImplementedException();
+        ArgumentNullException.ThrowIfNull(entity);
+        var existingUser = this.GetById(entity.Id);
+        if (existingUser != null)
+        {
+            this.dbSet.Update(existingUser);
+        }
     }
 }

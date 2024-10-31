@@ -49,5 +49,45 @@ public class StoreDbContext : DbContext
         modelBuilder.Entity<Product>().HasData(this.factory.GetProductData());
         modelBuilder.Entity<CustomerOrder>().HasData(this.factory.GetCustomerOrderData());
         modelBuilder.Entity<OrderDetail>().HasData(this.factory.GetOrderDetailData());
+
+        modelBuilder.Entity<User>()
+           .HasOne(u => u.Role)
+           .WithMany(ur => ur.User)
+           .HasForeignKey(u => u.RoleId);
+
+        modelBuilder.Entity<CustomerOrder>()
+            .HasOne(co => co.User)
+            .WithMany(c => c.Order)
+            .HasForeignKey(co => co.UserId);
+
+        modelBuilder.Entity<CustomerOrder>()
+            .HasOne(co => co.State)
+            .WithMany(os => os.Order)
+            .HasForeignKey(co => co.OrderStateId);
+
+        modelBuilder.Entity<OrderDetail>()
+            .HasOne(cod => cod.Order)
+            .WithMany(co => co.Details)
+            .HasForeignKey(cod => cod.OrderId);
+
+        modelBuilder.Entity<OrderDetail>()
+            .HasOne(cod => cod.Product)
+            .WithMany(p => p.OrderDetails)
+            .HasForeignKey(od => od.ProductId);
+
+        modelBuilder.Entity<Product>()
+            .HasOne(p => p.Manufacturer)
+            .WithMany(pt => pt.Products)
+            .HasForeignKey(p => p.ManufacturerId);
+
+        modelBuilder.Entity<Product>()
+            .HasOne(p => p.Title)
+            .WithMany(pt => pt.Products)
+            .HasForeignKey(p => p.TitleId);
+
+        modelBuilder.Entity<ProductTitle>()
+            .HasOne(pt => pt.Category)
+            .WithMany(c => c.Titles)
+            .HasForeignKey(pt => pt.CategoryId);
     }
 }

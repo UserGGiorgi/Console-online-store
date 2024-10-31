@@ -31,17 +31,63 @@ public class TestDataFactory : AbstractDataFactory
 
     public override CustomerOrder[] GetCustomerOrderData()
     {
-        return Array.Empty<CustomerOrder>();
+        return new CustomerOrder[]
+    {
+        new CustomerOrder
+        {
+            Id = 1,
+            UserId = 1,
+            OperationTime = "01-01-2024",
+            OrderStateId = 1,
+        },
+        new CustomerOrder
+        {
+            Id = 2,
+            UserId = 1,
+            OperationTime = "01-01-2024",
+            OrderStateId = 1,
+        },
+    };
     }
 
     public override Manufacturer[] GetManufacturerData()
     {
-        return Array.Empty<Manufacturer>();
+        return new Manufacturer[]
+    {
+        new Manufacturer
+        {
+            Id = 1,
+            Name = "ABC Electronics",
+        },
+        new Manufacturer
+        {
+            Id = 2,
+            Name = "XYZ Appliances",
+        },
+    };
     }
 
     public override OrderDetail[] GetOrderDetailData()
     {
-        return Array.Empty<OrderDetail>();
+        return new OrderDetail[]
+    {
+        new OrderDetail
+        {
+            Id = 1,
+            OrderId = 1,
+            ProductId = 2,
+            Price = 19.99m,
+            ProductAmount = 2,
+        },
+        new OrderDetail
+        {
+            Id = 2,
+            OrderId = 2,
+            ProductId = 1,
+            Price = 29.99m,
+            ProductAmount = 1,
+        },
+    };
     }
 
     public override OrderState[] GetOrderStateData()
@@ -61,17 +107,69 @@ public class TestDataFactory : AbstractDataFactory
 
     public override Product[] GetProductData()
     {
-        return Array.Empty<Product>();
+        return new Product[]
+    {
+        new Product
+        {
+            Id = 1,
+            TitleId = 1,
+            ManufacturerId = 1,
+            UnitPrice = 9.99m,
+            Description = "Sample product A",
+        },
+        new Product
+        {
+            Id = 2,
+            TitleId = 1,
+            ManufacturerId = 1,
+            UnitPrice = 14.99m,
+            Description = "Sample product B",
+        },
+    };
     }
 
     public override ProductTitle[] GetProductTitleData()
     {
-        return Array.Empty<ProductTitle>();
+        return new ProductTitle[]
+    {
+        new ProductTitle
+        {
+            Id = 1,
+            Title = "Product A Title",
+            CategoryId = 1,
+        },
+        new ProductTitle
+        {
+            Id = 2,
+            Title = "Product B Title",
+            CategoryId = 1,
+        },
+    };
     }
 
     public override User[] GetUserData()
     {
-        return Array.Empty<User>();
+        return new User[]
+    {
+        new User
+        {
+            Id = 1,
+            Name = "Alice",
+            LastName = "Smith",
+            Login = "alice.smith",
+            Password = "password123",
+            RoleId = 1,
+        },
+        new User
+        {
+            Id = 2,
+            Name = "Bob",
+            LastName = "Johnson",
+            Login = "bob.johnson",
+            Password = "securepassword",
+            RoleId = 2,
+        },
+    };
     }
 
     public override UserRole[] GetUserRoleData()

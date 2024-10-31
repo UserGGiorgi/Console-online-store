@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-// ToDo: add atribute here
+[Table("customer_orders")]
 public class CustomerOrder : BaseEntity
 {
     public CustomerOrder()
@@ -22,13 +22,13 @@ public class CustomerOrder : BaseEntity
         this.OrderStateId = orderStateId;
     }
 
-    // ToDo: add atribute here
+    [ForeignKey("UserId")]
     public int UserId { get; set; }
 
-    // ToDo: add atribute here
+    [Column("operation_time")]
     public string OperationTime { get; set; }
 
-    // ToDo: add atribute here
+    [ForeignKey("OrderStateId")]
     public int OrderStateId { get; set; }
 
     public User User { get; set; }

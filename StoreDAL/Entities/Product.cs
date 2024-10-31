@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-// ToDo: add atribute here
+[Table("products")]
 public class Product : BaseEntity
 {
     public Product()
@@ -24,16 +24,18 @@ public class Product : BaseEntity
         this.UnitPrice = price;
     }
 
-    // ToDo: add atribute here
+    [ForeignKey("TitleId")]
     public int TitleId { get; set; }
 
-    // ToDo: add atribute here
+    [ForeignKey("ManufacturerId")]
+
     public int ManufacturerId { get; set; }
 
-    // ToDo: add atribute here
+    [Column("unit_price")]
+
     public decimal UnitPrice { get; set; }
 
-    // ToDo: add atribute here
+    [Column("comment")]
     public string Description { get; set; }
 
     public ProductTitle Title { get; set; }
