@@ -1,5 +1,6 @@
 using ConsoleMenu;
 using ConsoleMenu.Builder;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using StoreDAL.Data;
 using StoreDAL.Data.InitDataFactory;
 
@@ -54,7 +55,37 @@ public static class UserMenuController
             userRole = UserRoles.RegistredCustomer;
         }
 
-        // ToDo
+        ArgumentNullException.ThrowIfNull(login);
+        ArgumentNullException.ThrowIfNull(password);
+        var encryptedPassword = EncryptPassword(password);
+        var user = context.Users.FirstOrDefault(u => u.Login == login);
+        ArgumentNullException.ThrowIfNull(user);
+        if (password == user.Password)
+        {
+            userRole = UserRoles.RegistredCustomer;
+        }
+    }
+
+    public static void Register()
+    {
+        Console.WriteLine("FirstName: ");
+        var firstName = Console.ReadLine();
+        Console.WriteLine("LastName: ");
+        var lastName = Console.ReadLine();
+        Console.WriteLine("Login: ");
+        var login = Console.ReadLine();
+        Console.WriteLine("Password: ");
+        var password = Console.ReadLine();
+        Console.WriteLine("Repeat Password: ");
+        var againPassword = Console.ReadLine();
+        ArgumentNullException.ThrowIfNull(login);
+        ArgumentNullException.ThrowIfNull(password);
+        if (password == againPassword)
+        {
+            Guid newGuid = Guid.NewGuid();
+            int Id = newGuid.GetHashCode();
+            context.Users.Add(new StoreDAL.Entities.User(Id, firstName, lastName, login, password, 2));
+        }
     }
 
     public static void Logout()
@@ -72,5 +103,12 @@ public static class UserMenuController
                 resKey = RolesToMenu[userRole].RunOnce(ref updateItems);
         }
         while (resKey != ConsoleKey.Escape);
+    }
+
+    private static string EncryptPassword(string password)
+    {
+        var bytes = System.Text.Encoding.UTF8.GetBytes(password);
+        var hash = System.Security.Cryptography.SHA256.HashData(bytes);
+        return Convert.ToBase64String(hash);
     }
 }

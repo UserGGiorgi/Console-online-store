@@ -81,7 +81,9 @@ public static class UserController
 
     public static void ShowAllProductTitles()
     {
-        throw new NotImplementedException();
+        var service = new ProductTitleService(context);
+        var menu = new ContextMenu(new AdminContextMenuHandler(service, InputHelper.ReadProductTitleModel), service.GetAll);
+        menu.Run();
     }
 
     public static void AddManufacturer()

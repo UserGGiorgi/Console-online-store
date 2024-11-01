@@ -19,6 +19,18 @@ internal static class InputHelper
         throw new NotImplementedException();
     }
 
+    public static ProductTitleModel ReadProductTitleModel()
+    {
+        Console.WriteLine("Input State Id");
+        var id = int.Parse(Console.ReadLine() !, CultureInfo.InvariantCulture);
+        Console.WriteLine("Input State Name");
+        var name = Console.ReadLine();
+        Console.WriteLine("Input State CategoryId");
+        var categoryId = int.Parse(Console.ReadLine() !, CultureInfo.InvariantCulture);
+        ArgumentNullException.ThrowIfNull(name);
+        return new ProductTitleModel(id, name, categoryId);
+    }
+
     public static OrderStateModel ReadOrderStateModel()
     {
         Console.WriteLine("Input State Id");
