@@ -44,6 +44,7 @@ public class OrderStateService : ICrud
 
     public void Update(AbstractModel model)
     {
-        throw new NotImplementedException();
+        var x = (OrderStateModel)model;
+        this.repository.Update(new OrderState(x.Id, x.StateName));
     }
 }

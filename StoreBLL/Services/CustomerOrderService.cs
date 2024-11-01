@@ -9,34 +9,42 @@ using StoreBLL.Models;
 using StoreDAL.Data;
 using StoreDAL.Entities;
 using StoreDAL.Interfaces;
+using StoreDAL.Repository;
+
 public class CustomerOrderService : ICrud
 {
+    private readonly ICustomerOrderRepository repository;
+
     public CustomerOrderService(StoreDbContext context)
     {
+        this.repository = new CustomerOrderRepository(context);
     }
 
     public void Add(AbstractModel model)
     {
-        throw new NotImplementedException();
+        var x = (CustomerOrderModel)model;
+        this.repository.Add(new CustomerOrder(x.Id, x.OperationTime, x.UserId, x.OrderStateId));
     }
 
     public void Delete(int modelId)
     {
-        throw new NotImplementedException();
+        this.repository.DeleteById(modelId);
     }
 
     public IEnumerable<AbstractModel> GetAll()
     {
-        throw new NotImplementedException();
+        return this.repository.GetAll().Select(x => new CustomerOrderModel(x.Id, x.OperationTime, x.UserId, x.OrderStateId));
     }
 
     public AbstractModel GetById(int id)
     {
-        throw new NotImplementedException();
+        var res = this.repository.GetById(id);
+        return new CustomerOrderModel(res.Id, res.OperationTime, res.UserId, res.OrderStateId);
     }
 
     public void Update(AbstractModel model)
     {
-        throw new NotImplementedException();
+        var x = (CustomerOrderModel)model;
+        this.repository.Update(new CustomerOrder(x.Id, x.OperationTime, x.UserId, x.OrderStateId));
     }
 }

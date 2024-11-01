@@ -6,13 +6,17 @@ using System.Security.Cryptography.X509Certificates;
 
 public class ManufacturerModel : AbstractModel
 {
-    public ManufacturerModel(int id, string name)
+    public ManufacturerModel(int id, string Name)
         : base(id)
     {
+        this.Id = id;
+        this.Name = Name;
     }
+
+    public string Name { get; set; }
 
     public override string ToString()
     {
-        throw new NotImplementedException();
+        return $"Id:{this.Id} {this.Name}";
     }
 }

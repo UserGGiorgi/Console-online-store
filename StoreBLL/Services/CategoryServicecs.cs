@@ -9,35 +9,42 @@ using StoreBLL.Models;
 using StoreDAL.Data;
 using StoreDAL.Entities;
 using StoreDAL.Interfaces;
+using StoreDAL.Repository;
 
 public class CategoryService : ICrud
 {
+    private readonly ICategoryRepository repository;
+
     public CategoryService(StoreDbContext context)
     {
+        this.repository = new CategoryRepository(context);
     }
 
     public void Add(AbstractModel model)
     {
-        throw new NotImplementedException();
+        var res = (CategoryModel)model;
+        this.repository.Add(new Category(res.Id, res.CategoryName));
     }
 
     public void Delete(int modelId)
     {
-        throw new NotImplementedException();
+        this.repository.DeleteById(modelId);
     }
 
     public IEnumerable<AbstractModel> GetAll()
     {
-        throw new NotImplementedException();
+        return this.repository.GetAll().Select(x => new CategoryModel(x.Id, x.Name));
     }
 
     public AbstractModel GetById(int id)
     {
-        throw new NotImplementedException();
+        var res = this.repository.GetById(id);
+        return new CategoryModel(res.Id, res.Name);
     }
 
     public void Update(AbstractModel model)
     {
-        throw new NotImplementedException();
+        var res = (CategoryModel)model;
+        this.repository.Update(new Category(res.Id, res.CategoryName));
     }
 }

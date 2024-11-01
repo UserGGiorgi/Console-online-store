@@ -44,6 +44,7 @@ public class UserRoleService : ICrud
 
     public void Update(AbstractModel model)
     {
-        throw new NotImplementedException();
+        var x = (UserRoleModel)model;
+        this.repository.Update(new UserRole(x.Id, x.RoleName));
     }
 }

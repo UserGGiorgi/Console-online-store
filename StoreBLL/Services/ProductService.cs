@@ -9,35 +9,42 @@ using StoreBLL.Models;
 using StoreDAL.Data;
 using StoreDAL.Entities;
 using StoreDAL.Interfaces;
+using StoreDAL.Repository;
 
 public class ProductService : ICrud
 {
+    private readonly IProductRepository repository;
+
     public ProductService(StoreDbContext context)
     {
+        this.repository = new ProductRepository(context);
     }
 
     public void Add(AbstractModel model)
     {
-        throw new NotImplementedException();
+        var x = (ProductModel)model;
+        this.repository.Add(new Product(x.Id, x.TitleId, x.ManufacturerId, x.Description, x.Price));
     }
 
     public void Delete(int modelId)
     {
-        throw new NotImplementedException();
+        this.repository.DeleteById(modelId);
     }
 
     public IEnumerable<AbstractModel> GetAll()
     {
-        throw new NotImplementedException();
+        return this.repository.GetAll().Select(x => new ProductModel(x.Id, x.TitleId, x.ManufacturerId, x.Description, x.UnitPrice));
     }
 
     public AbstractModel GetById(int id)
     {
-        throw new NotImplementedException();
+        var x = this.repository.GetById(id);
+        return new ProductModel(x.Id, x.TitleId, x.ManufacturerId, x.Description, x.UnitPrice);
     }
 
     public void Update(AbstractModel model)
     {
-        throw new NotImplementedException();
+        var x = (ProductModel)model;
+        this.repository.Update(new Product(x.Id, x.TitleId, x.ManufacturerId, x.Description, x.Price));
     }
 }
