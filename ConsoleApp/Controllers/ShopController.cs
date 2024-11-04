@@ -90,9 +90,11 @@ namespace ConsoleApp.Services
         {
             var service = new CustomerOrderService(context);
             var userService = new UserService(context);
+            Console.WriteLine("Input state order detail id");
             var id = int.Parse(Console.ReadLine() !, CultureInfo.InvariantCulture);
-            var stateId = 3;
-            service.Update(new CustomerOrderModel(id, DateTime.Now.ToString(), 1, stateId)); //1 temp
+            Console.WriteLine("Input stateId");
+            var stateId = int.Parse(Console.ReadLine() !, CultureInfo.InvariantCulture);
+            service.Update(new CustomerOrderModel(id, DateTime.Now.ToString(), 1, stateId));
             Console.WriteLine("Your order status has been updated.");
         }
 

@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ConsoleApp1;
+using StoreBLL.Models;
 using StoreDAL.Data;
+using StoreDAL.Entities;
 
 namespace ConsoleApp.Controllers
 {
@@ -14,7 +17,18 @@ namespace ConsoleApp.Controllers
 
         public static void AddProduct()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Product Id");
+            var productId = int.Parse(Console.ReadLine() !, CultureInfo.InvariantCulture);
+            Console.WriteLine("Title Id");
+            var titleId = int.Parse(Console.ReadLine() !, CultureInfo.InvariantCulture);
+            Console.WriteLine("Manufacturerer Id");
+            var manufacturerID = int.Parse(Console.ReadLine() !, CultureInfo.InvariantCulture);
+            Console.WriteLine("description");
+            var description = Console.ReadLine();
+            Console.WriteLine("price");
+            ArgumentNullException.ThrowIfNull(description, "description");
+            var price = int.Parse(Console.ReadLine() !, CultureInfo.InvariantCulture);
+            context.Products.Add(new Product(productId, titleId, manufacturerID, description, price));
         }
 
         public static void UpdateProduct()
