@@ -30,7 +30,6 @@ public class AdminContextMenuHandler : ContextMenuHandler
     public void EditItem()
     {
         Console.WriteLine("Input record ID that will be edited");
-        int id = int.Parse(Console.ReadLine() !, CultureInfo.InvariantCulture);
         var record = this.readModel();
         this.service.Update(record);
     }

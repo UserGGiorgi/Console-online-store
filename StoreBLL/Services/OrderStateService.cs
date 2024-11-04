@@ -13,7 +13,7 @@ using StoreDAL.Repository;
 
 public class OrderStateService : ICrud
 {
-    private readonly IOrderStateRepository repository;
+    private readonly OrderStateRepository repository;
 
     public OrderStateService(StoreDbContext context)
     {

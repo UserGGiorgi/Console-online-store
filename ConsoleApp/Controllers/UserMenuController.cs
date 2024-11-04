@@ -20,11 +20,6 @@ public static class UserMenuController
     private static UserRoles userRole;
     private static StoreDbContext context;
 
-    public static int UserId
-    {
-        get { return userId; }
-    }
-
     static UserMenuController()
     {
         userId = 0;
@@ -35,6 +30,11 @@ public static class UserMenuController
         RolesToMenu.Add(UserRoles.Guest, new GuestMainMenu().Create(context));
         RolesToMenu.Add(UserRoles.RegistredCustomer, new UserMainMenu().Create(context));
         RolesToMenu.Add(UserRoles.Administrator, new AdminMainMenu().Create(context));
+    }
+
+    public static int UserId
+    {
+        get { return userId; }
     }
 
     public static StoreDbContext Context

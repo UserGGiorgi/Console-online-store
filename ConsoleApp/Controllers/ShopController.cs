@@ -62,9 +62,9 @@ namespace ConsoleApp.Services
             {
                 Console.WriteLine($"Access error: {ex.Message}");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                Console.WriteLine($"An unexpected error occurred: {ex.Message}");
             }
         }
 

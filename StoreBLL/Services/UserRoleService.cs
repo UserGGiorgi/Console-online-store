@@ -13,7 +13,7 @@ using StoreDAL.Repository;
 
 public class UserRoleService : ICrud
 {
-    private readonly IUserRoleRepository repository;
+    private readonly UserRoleRepository repository;
 
     public UserRoleService(StoreDbContext context)
     {
