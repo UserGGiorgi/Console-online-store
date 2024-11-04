@@ -6,11 +6,11 @@ using System.Security.Cryptography.X509Certificates;
 
 public class ManufacturerModel : AbstractModel
 {
-    public ManufacturerModel(int id, string Name)
+    public ManufacturerModel(int id, string name)
         : base(id)
     {
         this.Id = id;
-        this.Name = Name;
+        this.Name = name;
     }
 
     public string Name { get; set; }

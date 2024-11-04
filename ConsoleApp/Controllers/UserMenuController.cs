@@ -62,6 +62,7 @@ public static class UserMenuController
             ArgumentNullException.ThrowIfNull(user);
             if (password == user.Password)
             {
+                userId = 1;
                 userRole = UserRoles.RegistredCustomer;
             }
         }

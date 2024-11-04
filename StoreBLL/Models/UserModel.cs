@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-namespace StoreBLL.Models
+﻿namespace StoreBLL.Models
 {
     public class UserModel : AbstractModel
     {

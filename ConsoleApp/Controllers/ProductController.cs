@@ -14,7 +14,6 @@ namespace ConsoleApp.Controllers
     public static class ProductController
     {
         private static StoreDbContext context = UserMenuController.Context;
-
         public static void AddProduct()
         {
             Console.WriteLine("Product Id");

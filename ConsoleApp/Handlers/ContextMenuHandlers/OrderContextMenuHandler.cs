@@ -27,8 +27,6 @@ public class OrderContextMenuHandler : ContextMenuHandler
         Console.WriteLine("Input record ID that will be edited");
         int id = int.Parse(Console.ReadLine() !, CultureInfo.InvariantCulture);
         var record = this.readModel();
-
-        // TODO
         this.service.Update(record);
     }
 

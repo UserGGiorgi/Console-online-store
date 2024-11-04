@@ -43,13 +43,8 @@ namespace ConsoleApp.Services
             }
 
             Console.Write("Enter your feedback: ");
-            string feedback = Console.ReadLine();
-
-            if (string.IsNullOrWhiteSpace(feedback))
-            {
-                Console.WriteLine("Feedback cannot be empty.");
-                return;
-            }
+            var feedback = Console.ReadLine();
+            ArgumentNullException.ThrowIfNull(feedback);
 
             string logEntry = $"Order ID: {orderId}, Feedback: {feedback}, Date: {DateTime.Now}";
             string filePath = "OrderFeedbackLog.txt";
@@ -89,12 +84,11 @@ namespace ConsoleApp.Services
         public static void AddOrderDetails()
         {
             var service = new CustomerOrderService(context);
-            var userService = new UserService(context);
             Console.WriteLine("Input state order detail id");
             var id = int.Parse(Console.ReadLine() !, CultureInfo.InvariantCulture);
             Console.WriteLine("Input stateId");
             var stateId = int.Parse(Console.ReadLine() !, CultureInfo.InvariantCulture);
-            service.Update(new CustomerOrderModel(id, DateTime.Now.ToString(), 1, stateId));
+            service.Update(new CustomerOrderModel(id, DateTime.Now.ToString(CultureInfo.InvariantCulture), 1, stateId));
             Console.WriteLine("Your order status has been updated.");
         }
 
