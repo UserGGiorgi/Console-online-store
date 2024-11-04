@@ -13,7 +13,7 @@ using StoreDAL.Repository;
 
 public class CategoryService : ICrud
 {
-    private readonly CategoryRepository repository;
+    private readonly ICategoryRepository repository;
 
     public CategoryService(StoreDbContext context)
     {

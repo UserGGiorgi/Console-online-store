@@ -13,7 +13,7 @@ using StoreDAL.Repository;
 
 public class ProductService : ICrud
 {
-    private readonly ProductRepository repository;
+    private readonly IProductRepository repository;
 
     public ProductService(StoreDbContext context)
     {

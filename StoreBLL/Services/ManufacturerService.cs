@@ -13,7 +13,7 @@ using StoreDAL.Repository;
 
 public class ManufacturerService : ICrud
 {
-    private readonly ManufacturerRepository repository;
+    private readonly IManufacturerRepository repository;
 
     public ManufacturerService(StoreDbContext context)
     {
