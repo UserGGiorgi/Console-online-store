@@ -54,9 +54,17 @@ namespace ConsoleApp.Services
                 File.AppendAllText(filePath, logEntry + Environment.NewLine);
                 Console.WriteLine("Feedback recorded successfully (stored in a log file).");
             }
-            catch (Exception ex)
+            catch (IOException ex)
             {
-                Console.WriteLine($"Error while saving feedback: {ex.Message}");
+                Console.WriteLine($"I/O error while saving feedback: {ex.Message}");
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                Console.WriteLine($"Access error: {ex.Message}");
+            }
+            catch (Exception)
+            {
+                throw;
             }
         }
 

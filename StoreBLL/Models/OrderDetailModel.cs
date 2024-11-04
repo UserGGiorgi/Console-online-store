@@ -8,7 +8,7 @@
             this.Id = id;
             this.OrderId = orderId;
             this.ProductId = productId;
-            this.price = price;
+            this.Price = price;
             this.Amount = amount;
         }
 
@@ -16,13 +16,13 @@
 
         public int ProductId { get; set; }
 
-        public decimal price { get; set; }
+        public decimal Price { get; set; }
 
         public int Amount { get; set; }
 
         public override string ToString()
         {
-            return $"Id:{this.Id}, {this.OrderId}, {this.ProductId}, {this.price}, {this.Amount}";
+            return $"Id:{this.Id}, {this.OrderId}, {this.ProductId}, {this.Price}, {this.Amount}";
         }
     }
 }

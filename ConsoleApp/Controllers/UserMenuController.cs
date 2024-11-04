@@ -20,6 +20,11 @@ public static class UserMenuController
     private static UserRoles userRole;
     private static StoreDbContext context;
 
+    public static int UserId
+    {
+        get { return userId; }
+    }
+
     static UserMenuController()
     {
         userId = 0;
@@ -57,10 +62,12 @@ public static class UserMenuController
         {
             ArgumentNullException.ThrowIfNull(login);
             ArgumentNullException.ThrowIfNull(password);
-            var encryptedPassword = EncryptPassword(password);
+            var bytes = System.Text.Encoding.UTF8.GetBytes(password);
+            var hash = System.Security.Cryptography.SHA256.HashData(bytes);
+            var encryptedPassword = Convert.ToBase64String(hash);
             var user = context.Users.FirstOrDefault(u => u.Login == login);
             ArgumentNullException.ThrowIfNull(user);
-            if (password == user.Password)
+            if (encryptedPassword == user.Password)
             {
                 userId = 1;
                 userRole = UserRoles.RegistredCustomer;
@@ -83,12 +90,5 @@ public static class UserMenuController
                 resKey = RolesToMenu[userRole].RunOnce(ref updateItems);
         }
         while (resKey != ConsoleKey.Escape);
-    }
-
-    private static string EncryptPassword(string password)
-    {
-        var bytes = System.Text.Encoding.UTF8.GetBytes(password);
-        var hash = System.Security.Cryptography.SHA256.HashData(bytes);
-        return Convert.ToBase64String(hash);
     }
 }

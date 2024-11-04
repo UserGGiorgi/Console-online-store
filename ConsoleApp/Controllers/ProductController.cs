@@ -14,6 +14,7 @@ namespace ConsoleApp.Controllers
     public static class ProductController
     {
         private static StoreDbContext context = UserMenuController.Context;
+
         public static void AddProduct()
         {
             Console.WriteLine("Product Id");
@@ -25,7 +26,7 @@ namespace ConsoleApp.Controllers
             Console.WriteLine("description");
             var description = Console.ReadLine();
             Console.WriteLine("price");
-            ArgumentNullException.ThrowIfNull(description, "description");
+            ArgumentNullException.ThrowIfNull(description);
             var price = int.Parse(Console.ReadLine() !, CultureInfo.InvariantCulture);
             context.Products.Add(new Product(productId, titleId, manufacturerID, description, price));
         }

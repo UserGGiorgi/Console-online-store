@@ -23,7 +23,7 @@ public class OrderDetailService : ICrud
     public void Add(AbstractModel model)
     {
         var res = (OrderDetailModel)model;
-        this.repository.Add(new OrderDetail(res.Id, res.OrderId, res.ProductId, res.price, res.Amount));
+        this.repository.Add(new OrderDetail(res.Id, res.OrderId, res.ProductId, res.Price, res.Amount));
     }
 
     public void Delete(int modelId)
@@ -45,6 +45,6 @@ public class OrderDetailService : ICrud
     public void Update(AbstractModel model)
     {
         var res = (OrderDetailModel)model;
-        this.repository.Update(new OrderDetail(res.Id, res.OrderId, res.ProductId, res.price, res.Amount));
+        this.repository.Update(new OrderDetail(res.Id, res.OrderId, res.ProductId, res.Price, res.Amount));
     }
 }
