@@ -11,12 +11,22 @@ internal static class InputHelper
 {
     public static CategoryModel ReadCategoryiModel()
     {
-        throw new NotImplementedException();
+        Console.WriteLine("Input category Id");
+        var id = int.Parse(Console.ReadLine() !, CultureInfo.InvariantCulture);
+        Console.WriteLine("Input category Name");
+        var name = Console.ReadLine();
+        ArgumentNullException.ThrowIfNull(name);
+        return new CategoryModel(id, name);
     }
 
     public static ManufacturerModel ReadManufacturerModel()
     {
-        throw new NotImplementedException();
+        Console.WriteLine("Input manufacturer Id");
+        var id = int.Parse(Console.ReadLine() !, CultureInfo.InvariantCulture);
+        Console.WriteLine("Input manufacturer Name");
+        var name = Console.ReadLine();
+        ArgumentNullException.ThrowIfNull(name);
+        return new ManufacturerModel(id, name);
     }
 
     public static ProductTitleModel ReadProductTitleModel()
@@ -39,6 +49,21 @@ internal static class InputHelper
         var name = Console.ReadLine();
         ArgumentNullException.ThrowIfNull(name);
         return new OrderStateModel(id, name);
+    }
+
+    public static OrderDetailModel ReadOrderDetailModel()
+    {
+        Console.WriteLine("Input State Id");
+        var id = int.Parse(Console.ReadLine() !, CultureInfo.InvariantCulture);
+        Console.WriteLine("Input State Id");
+        var orderId = int.Parse(Console.ReadLine() !, CultureInfo.InvariantCulture);
+        Console.WriteLine("Input State ProductId");
+        var productId = int.Parse(Console.ReadLine() !, CultureInfo.InvariantCulture);
+        Console.WriteLine("Input State price");
+        var price = int.Parse(Console.ReadLine() !, CultureInfo.InvariantCulture);
+        Console.WriteLine("Input State amount");
+        var amount = int.Parse(Console.ReadLine() !, CultureInfo.InvariantCulture);
+        return new OrderDetailModel(id, orderId, productId, price, amount);
     }
 
     public static UserRoleModel ReadUserRoleModel()

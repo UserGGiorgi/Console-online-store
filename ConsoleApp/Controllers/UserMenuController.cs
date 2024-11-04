@@ -48,43 +48,22 @@ public static class UserMenuController
             userId = 1;
             userRole = UserRoles.Administrator;
         }
-
-        if (login == "user")
+        else if (login == "user")
         {
             userId = 1;
             userRole = UserRoles.RegistredCustomer;
         }
-
-        ArgumentNullException.ThrowIfNull(login);
-        ArgumentNullException.ThrowIfNull(password);
-        var encryptedPassword = EncryptPassword(password);
-        var user = context.Users.FirstOrDefault(u => u.Login == login);
-        ArgumentNullException.ThrowIfNull(user);
-        if (password == user.Password)
+        else
         {
-            userRole = UserRoles.RegistredCustomer;
-        }
-    }
-
-    public static void Register()
-    {
-        Console.WriteLine("FirstName: ");
-        var firstName = Console.ReadLine();
-        Console.WriteLine("LastName: ");
-        var lastName = Console.ReadLine();
-        Console.WriteLine("Login: ");
-        var login = Console.ReadLine();
-        Console.WriteLine("Password: ");
-        var password = Console.ReadLine();
-        Console.WriteLine("Repeat Password: ");
-        var againPassword = Console.ReadLine();
-        ArgumentNullException.ThrowIfNull(login);
-        ArgumentNullException.ThrowIfNull(password);
-        if (password == againPassword)
-        {
-            Guid newGuid = Guid.NewGuid();
-            int Id = newGuid.GetHashCode();
-            context.Users.Add(new StoreDAL.Entities.User(Id, firstName, lastName, login, password, 2));
+            ArgumentNullException.ThrowIfNull(login);
+            ArgumentNullException.ThrowIfNull(password);
+            var encryptedPassword = EncryptPassword(password);
+            var user = context.Users.FirstOrDefault(u => u.Login == login);
+            ArgumentNullException.ThrowIfNull(user);
+            if (password == user.Password)
+            {
+                userRole = UserRoles.RegistredCustomer;
+            }
         }
     }
 

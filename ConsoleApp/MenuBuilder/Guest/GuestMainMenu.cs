@@ -12,7 +12,7 @@ public class GuestMainMenu : AbstractMenuCreator
         {
             (ConsoleKey.F1, "Login", UserMenuController.Login),
             (ConsoleKey.F2, "Show product list", UserController.ShowAllProductTitles),
-            (ConsoleKey.F3, "Register", UserMenuController.Register),
+            (ConsoleKey.F3, "Register", UserController.AddUser),
         };
         return array;
     }

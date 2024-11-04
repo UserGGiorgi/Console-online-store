@@ -16,6 +16,6 @@ public class CategoryModel : AbstractModel
 
     public override string ToString()
     {
-        return $"Id:{this.Id} {this.CategoryName}";
+        return $"Id:{this.Id} ,{this.CategoryName}";
     }
 }

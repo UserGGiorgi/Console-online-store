@@ -22,7 +22,7 @@ namespace StoreBLL.Models
 
         public override string ToString()
         {
-            return $"Id:{this.Id} {this.Title} {this.CategoryId}";
+            return $"Id:{this.Id}, {this.Title}, {this.CategoryId}";
         }
     }
 }

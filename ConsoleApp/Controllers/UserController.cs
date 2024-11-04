@@ -19,7 +19,26 @@ public static class UserController
 
     public static void AddUser()
     {
-        throw new NotImplementedException();
+        Console.WriteLine("FirstName: ");
+        var firstName = Console.ReadLine();
+        Console.WriteLine("LastName: ");
+        var lastName = Console.ReadLine();
+        Console.WriteLine("Login: ");
+        var login = Console.ReadLine();
+        Console.WriteLine("Password: ");
+        var password = Console.ReadLine();
+        Console.WriteLine("Repeat Password: ");
+        var againPassword = Console.ReadLine();
+        ArgumentNullException.ThrowIfNull(login);
+        ArgumentNullException.ThrowIfNull(password);
+        ArgumentNullException.ThrowIfNull(firstName);
+        ArgumentNullException.ThrowIfNull(lastName);
+        if (password == againPassword)
+        {
+            Guid newGuid = Guid.NewGuid();
+            int id = newGuid.GetHashCode();
+            context.Users.Add(new StoreDAL.Entities.User(id, firstName, lastName, login, password, 2));
+        }
     }
 
     public static void UpdateUser()

@@ -15,6 +15,6 @@ public class OrderStateModel : AbstractModel
 
     public override string ToString()
     {
-        return $"Id:{this.Id} {this.StateName}";
+        return $"Id:{this.Id}, {this.StateName}";
     }
 }

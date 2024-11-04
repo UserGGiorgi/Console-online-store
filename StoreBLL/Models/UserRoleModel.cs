@@ -15,6 +15,6 @@ public class UserRoleModel : AbstractModel
 
     public override string ToString()
     {
-        return $"Id:{this.Id} {this.RoleName}";
+        return $"Id:{this.Id}, {this.RoleName}";
     }
 }
